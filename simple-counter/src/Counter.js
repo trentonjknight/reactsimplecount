@@ -5,51 +5,64 @@ import React, { useState, useEffect } from 'react';
 
 //Example without proptypes
 
- const Counter = () => {
-    const [mils,setMils] = useState(0)
-    const [secs,setSecs] = useState(0)
-    const [tens,setTens] = useState(0)
-    const [huns,setHuns] = useState(0)
+//  const Counter = () => {
+//     const [mils,setMils] = useState(0)
+//     const [secs,setSecs] = useState(0)
+//     const [tens,setTens] = useState(0)
+//     const [huns,setHuns] = useState(0)
 
 
+//     useEffect(() => {
+//         setTimeout(()=> setMils(mils+1),100)
+//         setTimeout(()=> setSecs(secs+1),1000)
+//         setTimeout(()=> setTens(tens+1),10000)
+//         setTimeout(()=> setHuns(huns+1),100000)
+
+//         if (mils === 10){
+//             setMils(0)
+//         }
+//         if (secs >9){
+//             setSecs(0)
+//         }
+//         if (tens >9){
+//             setTens(0)
+//         }
+//         if (huns > 9){
+//             setHuns(0)
+//         }
+//     },[mils])
+
+
+const Counter = () => {
+    const [mils,setMils] = useState(0);
+    const secs = Math.floor((mils /10 ) % 10);
+    const tens = Math.floor((mils/100) % 10);
+    const huns = Math.floor((mils/1000) % 10)
     useEffect(() => {
         setTimeout(()=> setMils(mils+1),100)
-        setTimeout(()=> setSecs(secs+1),1000)
-        setTimeout(()=> setTens(tens+1),10000)
-        setTimeout(()=> setHuns(huns+1),100000)
-
-        if (mils === 10){
-            setMils(0)
-        }
-        if (secs === 10){
-            setSecs(0)
-        }
-        if (tens === 10){
-            setTens(0)
-        }
     },[mils])
 
     return (
 <>
-<div className="container mx-auto text-center">
+<div className="container text-center">
     <div className="row">
 
-        <div className="col">
-            <h1 className="text-primary">COUNT--></h1>
+        <div className="col mt-5">
+            <p className="text-primary">COUNT-></p>
         </div>
 
-        <div className="col huns">
-            <h1 className="text-primary">{huns}</h1>
+        <div className="col huns mt-5">
+            <p className="text-primary">{huns} ---></p>
         </div>
 
-        <div className="col tens">
-            <h1 className="text-primary">{tens}</h1>
+        <div className="col tens mt-5">
+            <p className="text-primary">{tens} ---></p>
         </div>
-        <div className="col sec">
-            <h1 className="text-primary">{secs}</h1>
+        <div className="col sec mt-5">
+            <p className="text-primary">{secs} ---></p>
         </div>
-        <div className="col mils">
-            <h1 className="text-primary">{mils}</h1>
+        <div className="col mils mt-5">
+            <p className="text-primary">{mils % 10}</p>
         </div>
     </div>
 </div>
